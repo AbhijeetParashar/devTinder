@@ -1,5 +1,5 @@
 const express = require("express");
-const { adminAuth } = require("./middlewares/auth");
+const { adminAuth, userAuth } = require("./middlewares/auth");
 
 const app = express();
 
@@ -11,6 +11,10 @@ app.get("/admin/profile", (req, res) => {
 
 app.delete("/admin/profile", (req, res) => {
   res.send("Admin Profile deleted");
+});
+
+app.get("/user", userAuth, (req, res) => {
+  res.send("User Profile");
 });
 
 app.listen(7777, () => {
