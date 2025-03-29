@@ -1,10 +1,18 @@
 const express = require("express");
+const { adminAuth } = require("./middlewares/auth");
 
 const app = express();
-app.use((req, res, next) => {
-  res.send("Hello Abhijeet from the server");
+
+app.use("/admin", adminAuth);
+
+app.get("/admin/profile", (req, res) => {
+  res.send("Admin Profile");
 });
 
-app.listen(3000, () => {
-  console.log("Server started on port 3000");
+app.delete("/admin/profile", (req, res) => {
+  res.send("Admin Profile deleted");
+});
+
+app.listen(7777, () => {
+  console.log("Server started on port 7777");
 });
